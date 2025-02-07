@@ -5,19 +5,20 @@ export default function About() {
   const cards = [
     {
       icon: FaCode,
-      title: "Desenvolvimento Frontend",
+      title: "Desenvolvimento Web",
       description: "Criação de interfaces modernas e responsivas com React, TypeScript e Tailwind."
     },
     {
-      icon: FaLaptopCode,
-      title: "Desenvolvimento Backend",
-      description: "Construção de APIs robustas e escaláveis com Node.js e bancos de dados."
+      icon: FaMobileAlt,
+      title: "Desenvolvimento Mobile",
+      description: "Aplicações que funcionam perfeitamente em qualquer dispositivo."
     },
     {
-      icon: FaMobileAlt,
-      title: "Design Responsivo",
-      description: "Aplicações que funcionam perfeitamente em qualquer dispositivo."
-    }
+      icon: FaLaptopCode,
+      title: "Projetos de Design",
+      description: "Construção de APIs robustas e escaláveis com Node.js e bancos de dados."
+    },
+    
   ];
 
   return (

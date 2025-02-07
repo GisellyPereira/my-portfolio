@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { IconType } from "react-icons";
+import disneyMe from '../../assets/disney-me.png';
 
 export default function Hero() {
   return (
@@ -78,14 +79,13 @@ export default function Hero() {
           >
             <div className="relative">
               <div
-                className="w-full h-[600px] rounded-2xl 
-                            bg-gradient-to-br from-primary-500/10 to-purple-500/10 
-                            backdrop-blur-3xl border border-white/5
-                            p-8 flex items-center justify-center"
+                className="w-full h-[600px] flex items-center justify-center"
               >
-                <span className="text-2xl text-gray-400">
-                  ima gem ou ilust{" "}
-                </span>
+                <img 
+                  src={disneyMe} 
+                  alt="Avatar Disney Style"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
           </motion.div>
