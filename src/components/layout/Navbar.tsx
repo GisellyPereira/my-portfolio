@@ -29,6 +29,7 @@ export default function Navbar() {
     { title: 'Home', href: '#home' },
     { title: 'Sobre', href: '#about' },
     { title: 'Skills', href: '#skills' },
+    { title: 'Blog', href: '#blog' },
   ];
 
   return (

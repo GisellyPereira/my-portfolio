@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { IconType } from "react-icons";
-import disneyMe from '../../assets/disney-me.png';
+import disneyMe from '../../assets/me.png';
 
 export default function Hero() {
   return (

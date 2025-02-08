@@ -1,8 +1,9 @@
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Skills from './components/sections/Skills';
-import Navbar from './components/layout/Navbar';
+import Blog from './components/sections/Blog';
 import Footer from './components/layout/Footer';
+import Navbar from './components/layout/Navbar';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Hero />
         <About />
         <Skills />
+        <Blog />
       </main>
       <Footer />
     </div>

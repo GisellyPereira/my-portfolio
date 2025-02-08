@@ -58,8 +58,8 @@ export default function Skills() {
                      border border-primary-200 mb-6
                      shadow-[0_4px_20px_-1px_rgba(254,213,219,0.6)]"
           >
-            <span className="text-primary-500 font-medium">
-              Minhas Habilidades
+             <span className="text-primary-500 font-medium bg-gradient-to-r from-primary-400 to-primary-500 text-transparent bg-clip-text">
+              Minhas Skills ✨
             </span>
           </motion.div>
 
