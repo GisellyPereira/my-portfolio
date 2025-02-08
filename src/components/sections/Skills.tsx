@@ -1,18 +1,46 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import {
+  SiJavascript, SiTypescript, SiReact, SiVuedotjs,
+  SiTailwindcss, SiStyledcomponents, SiGithub
+} from 'react-icons/si';
+import { TbBrandReactNative } from 'react-icons/tb';
+import { Modal } from '../ui/Modal';
+import { skillCategories } from '../../data/skillsData';
 
 export default function Skills() {
-  const skills = [
-    { name: "React", level: 90 },
-    { name: "TypeScript", level: 85 },
-    { name: "Node.js", level: 80 },
-    { name: "Tailwind CSS", level: 95 },
-    { name: "Next.js", level: 85 },
-    { name: "PostgreSQL", level: 75 }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Skills principais para mostrar na página
+  const mainSkills = [
+    { name: "JavaScript", icon: SiJavascript },
+    { name: "React", icon: SiReact },
+    { name: "React Native", icon: TbBrandReactNative },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "Vue", icon: SiVuedotjs },
+    { name: "Tailwind", icon: SiTailwindcss },
+    { name: "Styled Components", icon: SiStyledcomponents },
+    { name: "GitHub", icon: SiGithub },
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-primary-50 to-rose-100">
-      <div className="container mx-auto px-4">
+    <section id="skills" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-tr from-primary-50 via-rose-50/50 to-white">
+        <div className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `linear-gradient(30deg, #fed5db 12%, transparent 12.5%, transparent 87%, #fed5db 87.5%, #fed5db),
+                             linear-gradient(150deg, #fed5db 12%, transparent 12.5%, transparent 87%, #fed5db 87.5%, #fed5db),
+                             linear-gradient(30deg, #fed5db 12%, transparent 12.5%, transparent 87%, #fed5db 87.5%, #fed5db),
+                             linear-gradient(150deg, #fed5db 12%, transparent 12.5%, transparent 87%, #fed5db 87.5%, #fed5db),
+                             linear-gradient(60deg, #fed5db77 25%, transparent 25.5%, transparent 75%, #fed5db77 75%, #fed5db77),
+                             linear-gradient(60deg, #fed5db77 25%, transparent 25.5%, transparent 75%, #fed5db77 75%, #fed5db77)`,
+            backgroundSize: '80px 140px',
+            backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px'
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -20,40 +48,115 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Minhas <span className="text-primary-500">Habilidades</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-block px-6 py-2 rounded-full 
+                     bg-gradient-to-r from-white/80 to-primary-50/80
+                     border border-primary-200 mb-6
+                     shadow-[0_4px_20px_-1px_rgba(254,213,219,0.6)]"
+          >
+            <span className="text-primary-500 font-medium">
+              Minhas Habilidades
+            </span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Tecnologias que <span className="text-primary-500">domino</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Tecnologias e ferramentas que utilizo para criar soluções incríveis
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {skills.map((skill, index) => (
+        {/* Grid de skills principais */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
+          {mainSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white/70 backdrop-blur-sm rounded-lg p-6 shadow-lg"
+              className="flex flex-col items-center gap-3 p-4
+                       bg-white rounded-xl shadow-lg shadow-primary-100/20"
             >
-              <div className="flex justify-between mb-2">
-                <span className="text-gray-800 font-medium">{skill.name}</span>
-                <span className="text-primary-500">{skill.level}%</span>
-              </div>
-              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className="h-full bg-gradient-to-r from-primary-200 to-primary-400"
-                />
-              </div>
+              <skill.icon 
+                className="w-12 h-12 text-primary-500" 
+              />
+              <span className="text-sm font-medium text-gray-700">
+                {skill.name}
+              </span>
             </motion.div>
           ))}
         </div>
+
+        {/* Botão Ver Todas */}
+        <div className="text-center">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="group relative px-8 py-4 
+                     bg-gradient-to-r from-primary-400 to-primary-500
+                     hover:from-primary-500 hover:to-primary-600
+                     text-white font-medium rounded-xl
+                     shadow-lg shadow-primary-200/50
+                     hover:shadow-xl hover:shadow-primary-300/50
+                     transform hover:-translate-y-0.5
+                     transition-all duration-300"
+          >
+            <div className="flex items-center gap-2">
+              <span className="relative z-10">Ver todas as tecnologias</span>
+              <svg 
+                className="w-5 h-5 transition-transform duration-300 
+                         group-hover:translate-x-1" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M13 7l5 5m0 0l-5 5m5-5H6" 
+                />
+              </svg>
+            </div>
+            <div className="absolute inset-0 rounded-xl bg-white/20 
+                          opacity-0 group-hover:opacity-100 
+                          transition-opacity duration-300" 
+            />
+          </button>
+        </div>
+
+        {/* Modal com todas as skills */}
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Tecnologias & Ferramentas"
+        >
+          <div className="space-y-12">
+            {skillCategories.map((category) => (
+              <div key={category.title}>
+                <h4 className="text-lg font-semibold text-gray-800 mb-4">
+                  {category.title}
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                  {category.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="flex flex-col items-center gap-2 p-3
+                               bg-white rounded-xl shadow-sm"
+                    >
+                      <skill.icon className="w-8 h-8 text-primary-500" />
+                      <span className="text-sm text-gray-600 text-center">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Modal>
       </div>
     </section>
   );

@@ -16,6 +16,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsOpen(false); // Fecha o menu mobile se estiver aberto
+  };
+
   const menuItems = [
     { title: 'Home', href: '#home' },
     { title: 'Sobre', href: '#about' },
@@ -34,9 +43,11 @@ export default function Navbar() {
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="#" className={`text-2xl font-bold ${
-            scrolled ? 'text-gray-800' : 'text-gray-800'
-          }`}>
+          <a href="#home" 
+             onClick={(e) => handleClick(e, '#home')}
+             className={`text-2xl font-bold ${
+               scrolled ? 'text-gray-800' : 'text-gray-800'
+             }`}>
             Giselly
           </a>
           
@@ -46,6 +57,7 @@ export default function Navbar() {
               <a
                 key={item.title}
                 href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
                 className={`${
                   scrolled 
                     ? 'text-gray-600 hover:text-primary-500' 
@@ -79,7 +91,7 @@ export default function Navbar() {
                 key={item.title}
                 href={item.href}
                 className="block py-2 px-4 text-gray-300 hover:text-primary-400"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleClick(e, item.href)}
               >
                 {item.title}
               </a>

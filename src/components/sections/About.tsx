@@ -1,83 +1,122 @@
-import { motion } from 'framer-motion';
-import { FaCode, FaLaptopCode, FaMobileAlt } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { FaLaptopCode, FaMobileAlt, FaPaintBrush } from "react-icons/fa";
+import { ServiceCard } from "../ui/ServiceCard";
 
 export default function About() {
-  const cards = [
+  const services = [
     {
-      icon: FaCode,
+      icon: FaLaptopCode,
       title: "Desenvolvimento Web",
-      description: "Criação de interfaces modernas e responsivas com React, TypeScript e Tailwind."
+      description:
+        "Criando sites e aplicações incríveis com React, TypeScript, Vue e outras tecnologias bacanas!",
     },
     {
       icon: FaMobileAlt,
-      title: "Desenvolvimento Mobile",
-      description: "Aplicações que funcionam perfeitamente em qualquer dispositivo."
+      title: "Apps Mobile",
+      description:
+        "Desenvolvendo apps super legais com React Native que funcionam lindamente em qualquer dispositivo!",
     },
     {
-      icon: FaLaptopCode,
-      title: "Projetos de Design",
-      description: "Construção de APIs robustas e escaláveis com Node.js e bancos de dados."
+      icon: FaPaintBrush,
+      title: "UI/UX Design",
+      description:
+        "Criação de interfaces modernas e atraentes no Figma, com foco em usabilidade e experiência do usuário!",
     },
-    
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-rose-100 to-primary-50">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-white">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-primary-50/50 to-rose-50/50" />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, #fed5db 1px, transparent 0)",
+            backgroundSize: "40px 40px",
+            opacity: "0.3",
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Sobre <span className="text-primary-500">Mim</span>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-block px-6 py-2 rounded-full 
+                     bg-gradient-to-r from-white/80 to-primary-50/80
+                     border border-primary-200 mb-6
+                     shadow-[0_4px_20px_-1px_rgba(254,213,219,0.6)]"
+          >
+            <span className="text-primary-500 font-medium bg-gradient-to-r from-primary-400 to-primary-500 text-transparent bg-clip-text">
+              Sobre mim ✨
+            </span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12">
+            Hello <span className="text-primary-500">World!</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Desenvolvedora apaixonada por criar soluções inovadoras e experiências digitais únicas.
-            Com experiência em desenvolvimento web full stack e design de interfaces.
-          </p>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-gray-600 text-lg"
+              >
+                <p className="text-center leading-relaxed">
+                  Oi! Sou uma dev apaixonada por criar experiências digitais.
+                  Tenho 4 anos nessa jornada incrível, adoro transformar ideias
+                  em realidade através de código!
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-gray-600 text-lg"
+              >
+                <p className="text-center leading-relaxed">
+                  Sabe aquela satisfação de ver tudo funcionando lindamente?
+                  Então, sou meio viciada nisso! Acredito que código bom é
+                  código organizado (porque a vida já é complicada demais, né?),
+                  sempre seguindo boas práticas para garantir que tudo fique
+                  funcional e fácil de manter. Adoro desafios, aprender coisas
+                  novas e colaborar com quem também ama criar coisas bacanas.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="text-center"
+              >
+                <p className="text-primary-500 font-semibold mt-4 text-lg">
+                  Bora construir algo incrível juntos?
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {cards.map((card, index) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white/70 backdrop-blur-xl rounded-xl p-8 border border-primary-200/50
-                        hover:border-primary-400/50 transition-all duration-300
-                        group hover:shadow-[0_0_30px_rgba(254,213,219,0.3)]"
-            >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="p-4 bg-primary-100 rounded-lg group-hover:bg-primary-200 transition-all duration-300">
-                  <card.icon className="w-8 h-8 text-primary-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800">{card.title}</h3>
-                <p className="text-gray-600">{card.description}</p>
-              </div>
-            </motion.div>
+          {services.map((service, index) => (
+            <ServiceCard key={service.title} {...service} delay={index * 0.2} />
           ))}
         </div>
-
-        {/* Timeline ou informação adicional */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            Com mais de X anos de experiência no desenvolvimento web, 
-            tenho trabalhado com diversas tecnologias e frameworks modernos, 
-            sempre buscando as melhores práticas e soluções inovadoras para cada projeto.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
-} 
+}
