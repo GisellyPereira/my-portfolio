@@ -81,9 +81,9 @@ export default function Skills() {
                        bg-white rounded-xl shadow-lg shadow-primary-100/20"
             >
               <skill.icon 
-                className="w-12 h-12 text-primary-500" 
+                className="w-8 h-8 sm:w-12 sm:h-12 text-primary-500" 
               />
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-xs sm:text-sm font-medium text-gray-700">
                 {skill.name}
               </span>
             </motion.div>
@@ -94,10 +94,10 @@ export default function Skills() {
         <div className="text-center">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="group relative px-8 py-4 
+            className="group relative px-6 sm:px-8 py-3 sm:py-4 
                      bg-gradient-to-r from-primary-400 to-primary-500
                      hover:from-primary-500 hover:to-primary-600
-                     text-white font-medium rounded-xl
+                     text-white font-medium rounded-xl text-sm sm:text-base
                      shadow-lg shadow-primary-200/50
                      hover:shadow-xl hover:shadow-primary-300/50
                      transform hover:-translate-y-0.5
@@ -136,7 +136,7 @@ export default function Skills() {
           <div className="space-y-12">
             {skillCategories.map((category) => (
               <div key={category.title}>
-                <h4 className="text-lg font-semibold text-gray-800 mb-4">
+                <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-4">
                   {category.title}
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
@@ -146,8 +146,8 @@ export default function Skills() {
                       className="flex flex-col items-center gap-2 p-3
                                bg-white rounded-xl shadow-sm"
                     >
-                      <skill.icon className="w-8 h-8 text-primary-500" />
-                      <span className="text-sm text-gray-600 text-center">
+                      <skill.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary-500" />
+                      <span className="text-xs sm:text-sm text-gray-600 text-center">
                         {skill.name}
                       </span>
                     </div>

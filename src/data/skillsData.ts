@@ -61,7 +61,7 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    title: "Ferramentas & DevOps",
+    title: "Ferramentas",
     description: "Ferramentas para desenvolvimento e deploy",
     skills: [
       { name: "Git", icon: SiGit },

@@ -32,7 +32,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -40,13 +40,12 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="relative w-[90%] max-w-4xl max-h-[85vh] overflow-y-auto
-                     bg-white rounded-2xl shadow-xl
-                     scrollbar-thin scrollbar-thumb-primary-200 scrollbar-track-transparent"
+            className="relative w-[90%] max-w-4xl max-h-[85vh] bg-white rounded-2xl shadow-xl
+                     flex flex-col overflow-hidden"
           >
-            {/* Header */}
+            {/* Header - Fixo */}
             <div className="sticky top-0 flex items-center justify-between p-6 
-                          border-b border-gray-100 bg-white/80 backdrop-blur-sm">
+                          border-b border-gray-100 bg-white/80 backdrop-blur-sm z-10">
               {title && (
                 <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
               )}
@@ -58,8 +57,8 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
               </button>
             </div>
 
-            {/* Content */}
-            <div className="p-6">
+            {/* Content - Scrollável */}
+            <div className="p-6 overflow-y-auto">
               {children}
             </div>
           </motion.div>

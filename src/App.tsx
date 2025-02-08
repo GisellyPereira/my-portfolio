@@ -1,22 +1,30 @@
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Blog from './components/sections/Blog';
-import Footer from './components/layout/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './utils/ScrollToTop';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import { Hero, About, Skills, Blog, Projects, Contact } from './components/sections';
 
 function App() {
   return (
-    <div className="bg-gradient-to-b from-rose-50 to-primary-50">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Blog />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-gradient-to-b from-rose-50 to-primary-50">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={
+            <main>
+              <Hero />
+              <About />
+              <Skills />
+              <Blog />
+            </main>
+          } />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

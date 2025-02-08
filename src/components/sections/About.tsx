@@ -1,26 +1,31 @@
 import { motion } from "framer-motion";
 import { FaLaptopCode, FaMobileAlt, FaPaintBrush } from "react-icons/fa";
-import { ServiceCard } from "../ui/ServiceCard";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
+  const navigate = useNavigate();
+
   const services = [
     {
       icon: FaLaptopCode,
       title: "Desenvolvimento Web",
       description:
         "Criando sites e aplicações incríveis com React, TypeScript, Vue e outras tecnologias bacanas!",
+      onClick: () => navigate('/projects', { state: { activeTab: 'web' } })
     },
     {
       icon: FaMobileAlt,
       title: "Apps Mobile",
       description:
         "Desenvolvendo apps super legais com React Native que funcionam lindamente em qualquer dispositivo!",
+      onClick: () => navigate('/projects', { state: { activeTab: 'mobile' } })
     },
     {
       icon: FaPaintBrush,
       title: "UI/UX Design",
       description:
         "Criação de interfaces modernas e atraentes no Figma, com foco em usabilidade e experiência do usuário!",
+      onClick: () => navigate('/projects', { state: { activeTab: 'design' } })
     },
   ];
 
@@ -113,7 +118,34 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={service.title} {...service} delay={index * 0.2} />
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              onClick={service.onClick}
+              className="group bg-white rounded-2xl p-8 shadow-lg
+                       hover:shadow-xl hover:scale-[1.02]
+                       transition-all duration-500 cursor-pointer"
+            >
+              <div className="w-14 h-14 bg-primary-50 rounded-2xl
+                            flex items-center justify-center
+                            group-hover:bg-primary-100 transition-colors duration-500"
+              >
+                <service.icon className="w-7 h-7 text-primary-500" />
+              </div>
+
+              <h3 className="text-xl font-bold text-gray-800 mt-6 mb-4
+                            group-hover:text-primary-500 transition-colors duration-500"
+              >
+                {service.title}
+              </h3>
+
+              <p className="text-gray-600 leading-relaxed">
+                {service.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>

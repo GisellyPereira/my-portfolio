@@ -2,8 +2,15 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { IconType } from "react-icons";
 import disneyMe from '../../assets/me.png';
+import { useState } from 'react';
+import { Modal } from '../ui/Modal';
+import { AboutModal } from './AboutModal';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="home" className="min-h-screen w-full bg-gradient-to-br from-rose-50 via-primary-50 to-rose-100 relative overflow-hidden">
       {/* Elementos decorativos de background */}
@@ -65,14 +72,14 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
-              className="inline-block px-6 py-2 rounded-full 
+              className="inline-block px-4 sm:px-6 py-2 rounded-full 
                          bg-gradient-to-r from-white/80 to-primary-50/80 backdrop-blur-sm
                          border border-primary-200 
                          shadow-[0_4px_20px_-1px_rgba(254,213,219,0.6)]
                          hover:shadow-[0_4px_25px_-1px_rgba(254,213,219,0.8)]
                          transition-all duration-300"
             >
-              <span className="text-primary-500 font-medium bg-gradient-to-r from-primary-400 to-primary-500 text-transparent bg-clip-text">
+              <span className="text-sm sm:text-base text-primary-500 font-medium bg-gradient-to-r from-primary-400 to-primary-500 text-transparent bg-clip-text">
                 Oi, que bom te ver por aqui! ✨
               </span>
             </motion.div>
@@ -82,7 +89,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="text-5xl lg:text-7xl font-bold leading-tight"
+                className="text-3xl sm:text-5xl lg:text-7xl font-bold leading-tight"
               >
                 <span className="inline-block bg-gradient-to-r from-primary-400 via-primary-500 to-rose-400 
                                text-transparent bg-clip-text animate-gradient-x">
@@ -94,7 +101,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="text-xl text-gray-600 max-w-2xl"
+                className="text-base sm:text-xl text-gray-600 max-w-2xl"
               >
                 Sou desenvolvedora Front-end apaixonada pelo que faço. Transformo seus sonhos em código! ✨
               </motion.p>
@@ -107,10 +114,11 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.button
+                onClick={() => navigate('/projects')}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(254,213,219,0.5)" }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-gradient-to-r from-primary-300 to-primary-400 
-                          text-white rounded-xl text-lg font-medium
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-300 to-primary-400 
+                          text-white rounded-xl text-base sm:text-lg font-medium
                           shadow-lg shadow-primary-200/30 hover:shadow-xl
                           transition-all duration-300"
               >
@@ -118,10 +126,11 @@ export default function Hero() {
               </motion.button>
 
               <motion.button
+                onClick={() => navigate('/contact')}
                 whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.9)" }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-white/60 backdrop-blur-sm 
-                          text-gray-800 rounded-xl text-lg font-medium
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-white/60 backdrop-blur-sm 
+                          text-gray-800 rounded-xl text-base sm:text-lg font-medium
                           border border-primary-200/50 shadow-lg
                           transition-all duration-300"
               >
@@ -146,10 +155,10 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="hidden lg:block relative"
+            className="relative order-first lg:order-last"
           >
-            <div className="relative group">
-              {/* Círculos decorativos rotativos */}
+            <div className="relative group max-w-[200px] lg:max-w-full mx-auto">
+              {/* Círculos giratórios */}
               <div className="absolute -inset-10">
                 {[...Array(3)].map((_, i) => (
                   <motion.div
@@ -172,80 +181,95 @@ export default function Hero() {
                   />
                 ))}
 
-                {/* Círculos de gradiente estáticos */}
                 <div className="absolute inset-0 scale-110 bg-gradient-to-tr from-primary-100/20 via-rose-100/10 to-transparent rounded-full blur-md" />
                 <div className="absolute inset-0 scale-95 bg-gradient-to-bl from-primary-200/20 via-rose-200/10 to-transparent rounded-full blur-md" />
               </div>
 
-              {/* Container da imagem */}
-              <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="relative z-10"
-              >
-                <div className="relative">
-                  {/* Efeito de brilho */}
-                  <div className="absolute -inset-4 bg-gradient-to-r from-primary-200/40 via-rose-200/40 to-primary-200/40 
-                                rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                  
+              <div className="relative">
+                {/* Balão de fala */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{ 
+                    duration: 0.5,
+                    delay: 1.5,
+                    scale: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  className="absolute top-[-8%] right-[29%] z-20"
+                >
+                  <div className="relative">
+                    <div className="bg-white px-5 py-3 rounded-[20px] shadow-lg
+                                  transform rotate-2
+                                  before:content-[''] before:absolute before:w-4 before:h-4
+                                  before:bg-white before:-bottom-2 before:right-6
+                                  before:rotate-45 before:shadow-lg"
+                    >
+                      <p className="text-gray-800 font-medium text-sm whitespace-nowrap flex items-center gap-2">
+                        Click me! ✨
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Imagem clicável */}
+                <div 
+                  onClick={() => setIsModalOpen(true)}
+                  className="cursor-pointer relative"
+                >
                   <img 
                     src={disneyMe} 
                     alt="Avatar Disney Style"
-                    className="relative z-10 w-full h-[500px] object-contain
+                    className="relative z-10 w-full h-[200px] lg:h-[500px] object-contain
                              drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-              </motion.div>
 
-              {/* Partículas decorativas */}
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={`particle-${i}`}
-                  animate={{
-                    y: [-20, 20],
-                    x: [-10, 10],
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.8, 0.3]
-                  }}
-                  transition={{
-                    duration: 3 + i,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className={`absolute w-${i % 2 ? '2' : '3'} h-${i % 2 ? '2' : '3'} 
-                             bg-gradient-to-r from-primary-300/60 to-rose-300/60 
-                             rounded-full blur-sm`}
-                  style={{
-                    left: `${15 + i * 12}%`,
-                    top: `${25 + (i * 8) % 40}%`
-                  }}
-                />
-              ))}
+                {/* Partículas decorativas */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={`particle-${i}`}
+                    animate={{
+                      y: [-20, 20],
+                      x: [-10, 10],
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.8, 0.3]
+                    }}
+                    transition={{
+                      duration: 3 + i,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className={`absolute w-${i % 2 ? '2' : '3'} h-${i % 2 ? '2' : '3'} 
+                               bg-gradient-to-r from-primary-300/60 to-rose-300/60 
+                               rounded-full blur-sm`}
+                    style={{
+                      left: `${15 + i * 12}%`,
+                      top: `${25 + (i * 8) % 40}%`
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicador */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Essa sou eu..."
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-sm text-gray-600 font-medium">Scroll para descobrir</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-5 h-5 border-b-2 border-r-2 border-primary-400 transform rotate-45"
-          />
-        </div>
-      </motion.div>
+        <AboutModal />
+      </Modal>
     </section>
   );
 }

@@ -1,104 +1,98 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
+import { Link, useLocation } from 'react-router-dom';
+import { useScrollPosition } from '../../hooks/useScrollPosition';
+
+const menuItems = [
+  { title: 'Home', to: '/' },
+  { title: 'Projetos', to: '/projects' },
+  { title: 'Contato', to: '/contact' },
+] as const;
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const scrolled = useScrollPosition();
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsOpen(false); // Fecha o menu mobile se estiver aberto
-  };
-
-  const menuItems = [
-    { title: 'Home', href: '#home' },
-    { title: 'Sobre', href: '#about' },
-    { title: 'Skills', href: '#skills' },
-    { title: 'Blog', href: '#blog' },
-  ];
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/80 backdrop-blur-lg shadow-lg' 
-          : 'bg-transparent'
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/80 backdrop-blur-lg shadow-lg" : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" 
-             onClick={(e) => handleClick(e, '#home')}
-             className={`text-2xl font-bold ${
-               scrolled ? 'text-gray-800' : 'text-gray-800'
-             }`}>
+          {/* Logo/Nome */}
+          <Link
+            to="/"
+            className="text-xl font-bold bg-gradient-to-r from-primary-500 to-primary-600 
+                     text-transparent bg-clip-text"
+          >
             Giselly
-          </a>
-          
-          {/* Links de navegação */}
-          <div className="hidden md:flex items-center space-x-8">
+          </Link>
+
+          {/* Links de navegação - Desktop */}
+          <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.title}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={`${
-                  scrolled 
-                    ? 'text-gray-600 hover:text-primary-500' 
-                    : 'text-gray-800 hover:text-primary-500'
-                } transition-colors duration-300`}
+                to={item.to}
+                className={`text-gray-600 hover:text-primary-500 font-medium
+                          transition-colors duration-300 ${
+                            location.pathname === item.to ? 'text-primary-500' : ''
+                          }`}
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Botão do menu - Mobile */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-primary-50
+                     transition-colors duration-300 focus:outline-none"
           >
-            {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            {isOpen ? (
+              <HiX className="w-6 h-6 text-primary-500" />
+            ) : (
+              <HiMenu className="w-6 h-6 text-primary-500" />
+            )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden py-4 bg-gray-900/95 backdrop-blur-md"
-          >
-            {menuItems.map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="block py-2 px-4 text-gray-300 hover:text-primary-400"
-                onClick={(e) => handleClick(e, item.href)}
+        {/* Menu Mobile */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden mt-4"
+            >
+              <div className="bg-white rounded-2xl shadow-lg border border-primary-100/50 
+                           overflow-hidden backdrop-blur-lg"
               >
-                {item.title}
-              </a>
-            ))}
-          </motion.div>
-        )}
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.title}
+                    to={item.to}
+                    className="block px-6 py-3 text-gray-600 hover:text-primary-500
+                           hover:bg-primary-50/50 font-medium transition-all duration-300
+                           first:pt-4 last:pb-4"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </motion.header>
   );
