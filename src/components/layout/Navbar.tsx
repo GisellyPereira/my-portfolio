@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -21,32 +23,37 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-gray-900/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <motion.a
-            href="#"
-            className="text-2xl font-bold text-white"
-            whileHover={{ scale: 1.05 }}
-          >
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/80 backdrop-blur-lg shadow-lg' 
+          : 'bg-transparent'
+      }`}
+    >
+      <nav className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <a href="#" className={`text-2xl font-bold ${
+            scrolled ? 'text-gray-800' : 'text-gray-800'
+          }`}>
             Giselly
-          </motion.a>
-
-          {/* Desktop Menu */}
+          </a>
+          
+          {/* Links de navegação */}
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <motion.a
+              <a
                 key={item.title}
                 href={item.href}
-                className="text-gray-300 hover:text-primary-400 transition-colors"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                className={`${
+                  scrolled 
+                    ? 'text-gray-600 hover:text-primary-500' 
+                    : 'text-gray-800 hover:text-primary-500'
+                } transition-colors duration-300`}
               >
                 {item.title}
-              </motion.a>
+              </a>
             ))}
           </div>
 
@@ -79,7 +86,7 @@ export default function Navbar() {
             ))}
           </motion.div>
         )}
-      </div>
-    </nav>
+      </nav>
+    </motion.header>
   );
 } 

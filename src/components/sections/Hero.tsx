@@ -5,16 +5,16 @@ import disneyMe from '../../assets/disney-me.png';
 
 export default function Hero() {
   return (
-    <section className="min-h-screen w-full bg-gray-900 relative overflow-hidden">
+    <section className="min-h-screen w-full bg-gradient-to-b from-rose-50 to-primary-50 relative overflow-hidden">
       {/* Background com efeito de grid */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:14px_14px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#fed5db20_1px,transparent_1px),linear-gradient(to_bottom,#fed5db20_1px,transparent_1px)] bg-[size:14px_14px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-rose-50 via-transparent to-transparent" />
       </div>
 
       {/* Círculos de gradiente */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/30 rounded-full filter blur-[100px] opacity-50" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/30 rounded-full filter blur-[100px] opacity-50" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-200/30 rounded-full filter blur-[100px] opacity-50" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-rose-100/30 rounded-full filter blur-[100px] opacity-50" />
 
       {/* Conteúdo principal */}
       <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
@@ -45,9 +45,9 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-gradient-to-r from-primary-500 to-purple-500 
-                          text-white rounded-lg text-lg font-medium
-                          hover:shadow-[0_0_30px_rgba(236,72,153,0.3)] transition-all duration-300"
+                className="px-8 py-4 bg-gradient-to-r from-primary-200 to-primary-300 
+                          text-gray-800 rounded-lg text-lg font-medium
+                          hover:shadow-[0_0_30px_rgba(254,213,219,0.5)] transition-all duration-300"
               >
                 Ver Projetos
               </motion.button>
@@ -55,9 +55,9 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-white/5 backdrop-blur-sm 
-                          text-white rounded-lg text-lg font-medium
-                          hover:bg-white/10 transition-all duration-300"
+                className="px-8 py-4 bg-white/50 backdrop-blur-sm 
+                          text-gray-800 rounded-lg text-lg font-medium
+                          hover:bg-white/70 transition-all duration-300"
               >
                 Contato
               </motion.button>

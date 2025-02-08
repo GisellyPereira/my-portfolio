@@ -11,7 +11,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-800">
+    <section id="skills" className="py-20 bg-gradient-to-b from-primary-50 to-rose-100">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,10 +20,10 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Minhas <span className="text-primary-400">Habilidades</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Minhas <span className="text-primary-500">Habilidades</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto">
             Tecnologias e ferramentas que utilizo para criar soluções incríveis
           </p>
         </motion.div>
@@ -36,19 +36,19 @@ export default function Skills() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-900/50 rounded-lg p-6"
+              className="bg-white/70 backdrop-blur-sm rounded-lg p-6 shadow-lg"
             >
               <div className="flex justify-between mb-2">
-                <span className="text-white font-medium">{skill.name}</span>
-                <span className="text-primary-400">{skill.level}%</span>
+                <span className="text-gray-800 font-medium">{skill.name}</span>
+                <span className="text-primary-500">{skill.level}%</span>
               </div>
-              <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
                   transition={{ duration: 1, delay: 0.5 }}
                   viewport={{ once: true }}
-                  className="h-full bg-gradient-to-r from-primary-500 to-purple-500"
+                  className="h-full bg-gradient-to-r from-primary-200 to-primary-400"
                 />
               </div>
             </motion.div>

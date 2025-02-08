@@ -8,13 +8,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#fdf2f8',
-          100: '#fce7f3',
-          200: '#fbcfe8',
-          300: '#f9a8d4',
-          400: '#f472b6',
-          500: '#ec4899',
-          600: '#db2777',
+          50: '#fffafb',
+          100: '#fff1f3',
+          200: '#fed5db',
+          300: '#fdb5bf',
+          400: '#fb8fa0',
+          500: '#f96480',
+          600: '#e63d5c',
+        },
+        rose: {
+          50: '#fffafb',
+          100: '#fed5db',
+          200: '#fdb5bf',
         }
       },
       fontFamily: {

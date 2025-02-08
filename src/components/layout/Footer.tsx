@@ -9,7 +9,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer className="bg-gradient-to-b from-primary-50 to-rose-100 border-t border-primary-200/50">
       <div className="container mx-auto py-12">
         <div className="flex flex-col items-center space-y-8">
           {/* Logo */}
@@ -17,7 +17,7 @@ export default function Footer() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-2xl font-bold text-white"
+            className="text-2xl font-bold text-gray-800"
           >
             Giselly
           </motion.div>
@@ -29,7 +29,7 @@ export default function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="text-gray-400 hover:text-primary-400 text-2xl transition-colors"
+                className="text-gray-600 hover:text-primary-500 text-2xl transition-colors"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-gray-500 text-sm text-center">
+          <div className="text-gray-600 text-sm text-center">
             <p>© {new Date().getFullYear()} Giselly. Todos os direitos reservados.</p>
             <p className="mt-1">Desenvolvido com ❤️ usando React e Tailwind</p>
           </div>

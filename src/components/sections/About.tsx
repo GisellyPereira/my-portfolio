@@ -22,7 +22,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-900">
+    <section id="about" className="py-20 bg-gradient-to-b from-rose-100 to-primary-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,10 +31,10 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Sobre <span className="text-primary-400">Mim</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Sobre <span className="text-primary-500">Mim</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto">
             Desenvolvedora apaixonada por criar soluções inovadoras e experiências digitais únicas.
             Com experiência em desenvolvimento web full stack e design de interfaces.
           </p>
@@ -48,16 +48,16 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-gray-800/50 backdrop-blur-xl rounded-xl p-8 border border-gray-700/50
-                        hover:border-primary-500/50 transition-all duration-300
-                        group hover:shadow-[0_0_30px_rgba(236,72,153,0.1)]"
+              className="bg-white/70 backdrop-blur-xl rounded-xl p-8 border border-primary-200/50
+                        hover:border-primary-400/50 transition-all duration-300
+                        group hover:shadow-[0_0_30px_rgba(254,213,219,0.3)]"
             >
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="p-4 bg-primary-500/10 rounded-lg group-hover:bg-primary-500/20 transition-all duration-300">
-                  <card.icon className="w-8 h-8 text-primary-400" />
+                <div className="p-4 bg-primary-100 rounded-lg group-hover:bg-primary-200 transition-all duration-300">
+                  <card.icon className="w-8 h-8 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-semibold text-white">{card.title}</h3>
-                <p className="text-gray-400">{card.description}</p>
+                <h3 className="text-xl font-semibold text-gray-800">{card.title}</h3>
+                <p className="text-gray-600">{card.description}</p>
               </div>
             </motion.div>
           ))}
@@ -71,7 +71,7 @@ export default function About() {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <p className="text-gray-400 max-w-3xl mx-auto">
+          <p className="text-gray-600 max-w-3xl mx-auto">
             Com mais de X anos de experiência no desenvolvimento web, 
             tenho trabalhado com diversas tecnologias e frameworks modernos, 
             sempre buscando as melhores práticas e soluções inovadoras para cada projeto.

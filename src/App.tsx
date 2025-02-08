@@ -6,7 +6,7 @@ import Footer from './components/layout/Footer';
 
 function App() {
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gradient-to-b from-rose-50 to-primary-50">
       <Navbar />
       <main>
         <Hero />
