@@ -1,4 +1,4 @@
-import { FaLaptopCode, FaMobileAlt, FaPaintBrush } from "react-icons/fa";
+import { FaLaptopCode} from "react-icons/fa";
 import { Service } from '../types';
 
 export const createServices = (navigate: Function): Service[] => [
