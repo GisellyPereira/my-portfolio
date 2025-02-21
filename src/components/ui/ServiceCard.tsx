@@ -5,30 +5,36 @@ interface ServiceCardProps {
   icon: IconType;
   title: string;
   description: string;
-  delay?: number;
+  onClick: () => void;
+  delay: number;
 }
 
-export const ServiceCard = ({ icon: Icon, title, description, delay = 0 }: ServiceCardProps) => (
+export const ServiceCard = ({ icon: Icon, title, description, onClick, delay }: ServiceCardProps) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    className="relative group"
+    onClick={onClick}
+    className="group bg-white rounded-2xl p-8 shadow-lg
+              hover:shadow-xl hover:scale-[1.02]
+              transition-all duration-500 cursor-pointer"
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-primary-50/60 
-                  rounded-2xl transition-all duration-300 group-hover:scale-[1.02]
-                  border border-primary-100 backdrop-blur-sm
-                  shadow-[0_8px_30px_rgb(254,213,219,0.2)]
-                  group-hover:shadow-[0_20px_40px_rgb(254,213,219,0.3)]" />
-    
-    <div className="relative p-8 flex flex-col items-center text-center space-y-4">
-      <div className="p-4 bg-gradient-to-br from-primary-100 to-rose-100 rounded-xl
-                    group-hover:scale-110 transition-transform duration-300">
-        <Icon className="w-8 h-8 text-primary-500" />
-      </div>
-      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+    <div className="w-14 h-14 bg-primary-50 rounded-2xl
+                  flex items-center justify-center
+                  group-hover:bg-primary-100 transition-colors duration-500"
+    >
+      <Icon className="w-7 h-7 text-primary-500" />
     </div>
+
+    <h3 className="text-xl font-bold text-gray-800 mt-6 mb-4
+                  group-hover:text-primary-500 transition-colors duration-500"
+    >
+      {title}
+    </h3>
+
+    <p className="text-gray-600 leading-relaxed">
+      {description}
+    </p>
   </motion.div>
 ); 

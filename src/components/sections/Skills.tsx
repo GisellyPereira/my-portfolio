@@ -7,6 +7,8 @@ import {
 import { TbBrandReactNative } from 'react-icons/tb';
 import { Modal } from '../ui/Modal';
 import { skillCategories } from '../../data/skillsData';
+import { Z_INDEX } from '../../constants/zIndex';
+import { Button } from '../ui/Button';
 
 export default function Skills() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +26,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-32 relative overflow-hidden">
+    <section className="py-32 relative" style={{ zIndex: Z_INDEX.sections.skills }}>
       <div className="absolute inset-0 bg-gradient-to-tr from-primary-50 via-rose-50/50 to-white">
         <div className="absolute inset-0 opacity-30"
           style={{
@@ -92,39 +94,14 @@ export default function Skills() {
 
         {/* Botão Ver Todas */}
         <div className="text-center">
-          <button
+          <Button
+            variant="gradient"
+            size="md"
             onClick={() => setIsModalOpen(true)}
-            className="group relative px-6 sm:px-8 py-3 sm:py-4 
-                     bg-gradient-to-r from-primary-400 to-primary-500
-                     hover:from-primary-500 hover:to-primary-600
-                     text-white font-medium rounded-xl text-sm sm:text-base
-                     shadow-lg shadow-primary-200/50
-                     hover:shadow-xl hover:shadow-primary-300/50
-                     transform hover:-translate-y-0.5
-                     transition-all duration-300"
+            withArrow
           >
-            <div className="flex items-center gap-2">
-              <span className="relative z-10">Ver todas as tecnologias</span>
-              <svg 
-                className="w-5 h-5 transition-transform duration-300 
-                         group-hover:translate-x-1" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M13 7l5 5m0 0l-5 5m5-5H6" 
-                />
-              </svg>
-            </div>
-            <div className="absolute inset-0 rounded-xl bg-white/20 
-                          opacity-0 group-hover:opacity-100 
-                          transition-opacity duration-300" 
-            />
-          </button>
+            Ver todas as tecnologias
+          </Button>
         </div>
 
         {/* Modal com todas as skills */}

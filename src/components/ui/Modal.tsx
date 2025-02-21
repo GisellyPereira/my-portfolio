@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReactNode, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
+import { Z_INDEX } from '../../constants/zIndex';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,29 +11,48 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, children, title }: ModalProps) {
-  // Bloqueia o scroll quando o modal está aberto
   useEffect(() => {
     if (isOpen) {
+      // Salva a posição atual do scroll
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollY}px`;
+
+      return () => {
+        // Restaura o scroll quando o modal fecha
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        window.scrollTo(0, scrollY);
+      };
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isOpen]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div 
+          className="fixed inset-0 flex items-center justify-center"
+          style={{ 
+            zIndex: Z_INDEX.modal,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            position: 'fixed'
+          }}
+        >
           {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm"
+            style={{ zIndex: Z_INDEX.modalOverlay }}
           />
 
           {/* Modal */}
@@ -42,6 +62,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
             exit={{ opacity: 0, scale: 0.95 }}
             className="relative w-[90%] max-w-4xl max-h-[85vh] bg-white rounded-2xl shadow-xl
                      flex flex-col overflow-hidden"
+            style={{ zIndex: Z_INDEX.modal }}
           >
             {/* Header - Fixo */}
             <div className="sticky top-0 flex items-center justify-between p-6 

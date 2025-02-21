@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import imagemAlemDaMeta from '../../assets/ALEM-DA-META.png';
 import batalhaFrontEnd from '../../assets/batalha-frontendd.png';
+import { Z_INDEX } from '../../constants/zIndex';
 
 interface BlogPost {
   title: string;
@@ -30,7 +31,7 @@ const blogPosts: BlogPost[] = [
 
 export default function Blog() {
   return (
-    <section id="blog" className="py-32 relative overflow-hidden">
+    <section className="py-32 relative" style={{ zIndex: Z_INDEX.sections.blog }}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-primary-50/30 to-white" />
 
